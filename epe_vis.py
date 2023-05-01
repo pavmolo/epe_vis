@@ -50,5 +50,9 @@ if len(rows_collection) > 0:
     
     
 co_in_a_day = work_minutes - (data['Дневной спрос'] * data['Время цикла']).sum()
+co_time_in_epe = data['Время переналадки'].sum()
+epe = co_time_in_epe / co_in_a_day
 
-st.title(f"Минут остается на переналадки в день: {co_in_a_day}")
+st.title(f"Времени остается на переналадки в день: {co_in_a_day} минут")
+st.title(f"Времени переналадки в цикле EPE: {co_time_in_epe} минут")
+st.title(f"EPE = : {co_time_in_epe} дней")
