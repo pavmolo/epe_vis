@@ -19,7 +19,7 @@ def remove_row(row_id):
 
 def generate_row(row_id):
     row_container = st.empty()
-    row_columns = row_container.columns((5, 4, 3, 2, 1))
+    row_columns = row_container.columns((5, 3, 3, 3, 1))
     row_name = row_columns[0].text_input("SKU на оборудовании", key=f"txt_{row_id}")
     row_qty = row_columns[1].number_input("Ежедневная потребность", step=1, key=f"nbr_{row_id}")
     row_cycle = row_columns[2].number_input("Время цикла", step=2, key=f"time_{row_id}")
