@@ -55,4 +55,4 @@ epe = co_time_in_epe / co_in_a_day
 
 st.title(f"Времени остается на переналадки в день: {co_in_a_day} минут")
 st.title(f"Времени переналадки в цикле EPE: {co_time_in_epe} минут")
-st.title(f"EPE = : {co_time_in_epe} дней")
+st.title(f"EPE = {co_time_in_epe} дней")
