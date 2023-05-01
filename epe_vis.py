@@ -40,6 +40,6 @@ if len(rows_collection) > 0:
     st.subheader("Collected Data")
     display = st.columns(2)
     data = pd.DataFrame(rows_collection)
-    data.rename(columns={"name": "Item Name", "qty": "Quantity"}, inplace=True)
+    data.rename(columns={"name": "SKU", "qty": "Ежедневная потребность"}, inplace=True)
     display[0].dataframe(data=data, use_container_width=True)
-    display[1].bar_chart(data=data, x="Item Name", y="Quantity")
+    display[1].bar_chart(data=data, x="SKU", y="Потребление")
