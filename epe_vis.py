@@ -14,13 +14,9 @@ with st.sidebar:
   cycle_times = {}
   changeover_times = {}
   for i in range(sku_quantity):
-    titles["string{0}".format(x)]
-    title = st.text_input(f'Введите название продукта {i}', f'Продукт # {i}')
-    cycle_time = st.number_input('Установите время цикла единицы производства в минутах', 1)
-    changeover_time = st.number_input('Установите время переналадки с продукта {i} на продукт {i + 1} в минутах', 20)
-    titles.append(title)
-    cycle_times.append(cycle_times)
-    changeover_times.append(changeover_time)
+    titles[f'title{i}'] = st.text_input(f'Введите название продукта {i}', f'Продукт # {i}')
+    cycle_times[f'cycle_time{i}'] = st.number_input('Установите время цикла единицы производства в минутах', 1)
+    changeover_times[f'changeover_time{i}'] = st.number_input('Установите время переналадки с продукта {i} на продукт {i + 1} в минутах', 20)
     
 st.title('Приложение по моделированию EPE')
 titles
