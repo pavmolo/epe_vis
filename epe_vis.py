@@ -49,6 +49,6 @@ if len(rows_collection) > 0:
     st.bar_chart(data=data, x="SKU", y="Дневной спрос")
     
     
-co_in_a_day = work_minutes - (data['qty'] * data['cycle']).sum()
+co_in_a_day = work_minutes - (data['Дневной спрос'] * data['Время цикла']).sum()
 
 st.title(f"Минут остается на переналадки в день: {co_in_a_day}")
