@@ -10,13 +10,14 @@ st.markdown('''<a href="http://kaizen-consult.ru/"><img src='https://www.kaizen.
 with st.sidebar:
   st.title('Введите данные для определение цикла EPE на данном оборудовании')
   sku_quantity = st.number_input("Укажите количество SKU, которые обрабатывает данное оборудование (комплекс)", value=10)
-  titles = {}
-  cycle_times = {}
-  changeover_times = {}
-  for i in range(sku_quantity):
-    titles[f'title{i}'] = st.text_input(f'Введите название продукта {i}', f'Продукт # {i}')
-    cycle_times[f'cycle_time{i}'] = st.number_input('Установите время цикла единицы производства в минутах', 1)
-    changeover_times[f'changeover_time{i}'] = st.number_input('Установите время переналадки с продукта {i} на продукт {i + 1} в минутах', 20)
+  if st.button('Установить количество SKU'):
+    titles = {}
+    cycle_times = {}
+    changeover_times = {}
+    for i in range(sku_quantity):
+      titles[f'title{i}'] = st.text_input(f'Введите название продукта {i}', f'Продукт # {i}')
+      cycle_times[f'cycle_time{i}'] = st.number_input('Установите время цикла единицы производства в минутах', 1)
+      changeover_times[f'changeover_time{i}'] = st.number_input('Установите время переналадки с продукта {i} на продукт {i + 1} в минутах', 20)
     
 st.title('Приложение по моделированию EPE')
 titles
