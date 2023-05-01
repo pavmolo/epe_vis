@@ -57,7 +57,7 @@ if len(rows_collection) > 0:
         pdf = FPDF()
         pdf.add_page()
         pdf.set_font('Arial', 'B', 16)
-        pdf.cell(40, 10, row_container)
+        pdf.cell(40, 10, rows_collection)
 
         html = create_download_link(pdf.output(dest="S").encode("latin-1"), "test")
 
