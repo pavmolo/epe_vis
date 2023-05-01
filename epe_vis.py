@@ -52,7 +52,7 @@ if len(rows_collection) > 0:
     co_time_in_epe = data['Время переналадки'].sum()
     epe = co_time_in_epe / co_in_a_day
     
-    timeline_data = (data['Дневной спрос'] / epe).astype('int')
+    timeline_data = (data['Дневной спрос'] * epe).astype('int')
     st.dataframe(data=timeline_data, use_container_width=True)
     
     st.title(f"Времени остается на переналадки в день: {co_in_a_day} минут")
