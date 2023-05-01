@@ -44,4 +44,4 @@ if len(rows_collection) > 0:
     data = pd.DataFrame(rows_collection)
     data.rename(columns={"name": "SKU", "qty": "Ежедневная потребность"}, inplace=True)
     display[0].dataframe(data=data, use_container_width=True)
-    display[1].bar_chart(data=data, x="SKU", y="Потребление")
+    display[1].bar_chart(data=data, x="name", y="qty")
