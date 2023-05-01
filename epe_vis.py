@@ -13,7 +13,7 @@ with st.sidebar:
   titles = []
   cycle_times = []
   changeover_times = []
-  for i in range(sku_quantity + 1):
+  for i in range(sku_quantity):
     title = st.text_input(f'Введите название продукта {i}', f'Продукт # {i}')
     cycle_time = st.number_input('Установите время цикла единицы производства в минутах', 1)
     changeover_time = st.number_input('Установите время переналадки с продукта {i} на продукт {i + 1} в минутах', 20)
