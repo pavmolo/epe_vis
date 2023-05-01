@@ -4,7 +4,7 @@ import uuid
 from fpdf import FPDF
 import base64
 
-work_minutes = st.number_input("Рабочих минут оборудования в сутки", 900)
+work_minutes = st.number_input("Рабочих минут оборудования в сутки", 0)
 
 if "rows" not in st.session_state:
     st.session_state["rows"] = []
