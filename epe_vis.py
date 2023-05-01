@@ -48,15 +48,18 @@ if len(rows_collection) > 0:
     data.rename(columns={"name": "SKU", "qty": "Дневной спрос", "cycle": "Время цикла", "co": "Время переналадки"}, inplace=True)
     st.dataframe(data=data, use_container_width=True)
     st.bar_chart(data=data, x="SKU", y="Дневной спрос")
-    timeline_data = data
+    co_in_a_day = work_minutes - (data['Дневной спрос'] * data['Время цикла']).sum()
+    co_time_in_epe = data['Время переналадки'].sum()
+    epe = co_time_in_epe / co_in_a_day
+    
+    timeline_data = (data['Дневной спрос'] / epe).astype('int')
     st.dataframe(data=timeline_data, use_container_width=True)
     
+    st.title(f"Времени остается на переналадки в день: {co_in_a_day} минут")
+    st.title(f"Времени переналадки в цикле EPE: {co_time_in_epe} минут")
+    st.title(f"EPE = {epe} дней")
     
     
-co_in_a_day = work_minutes - (data['Дневной спрос'] * data['Время цикла']).sum()
-co_time_in_epe = data['Время переналадки'].sum()
-epe = co_time_in_epe / co_in_a_day
 
-st.title(f"Времени остается на переналадки в день: {co_in_a_day} минут")
-st.title(f"Времени переналадки в цикле EPE: {co_time_in_epe} минут")
-st.title(f"EPE = {epe} дней")
+
+
