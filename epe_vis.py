@@ -3,6 +3,7 @@ import pandas as pd
 import uuid
 from fpdf import FPDF
 import base64
+import plotly.express as px
 
 work_minutes = st.number_input("Рабочих минут оборудования в сутки", 0)
 
@@ -42,11 +43,14 @@ with menu[0]:
     st.button("Add Item", on_click=add_row)
     
 if len(rows_collection) > 0:
-    st.subheader("Collected Data")
+    st.subheader("Данные")
     data = pd.DataFrame(rows_collection)
     data.rename(columns={"name": "SKU", "qty": "Дневной спрос", "cycle": "Время цикла", "co": "Время переналадки"}, inplace=True)
     st.dataframe(data=data, use_container_width=True)
     st.bar_chart(data=data, x="SKU", y="Дневной спрос")
+    timeline_data = data
+    st.dataframe(data=timeline_data, use_container_width=True)
+    
     
     
 co_in_a_day = work_minutes - (data['Дневной спрос'] * data['Время цикла']).sum()
