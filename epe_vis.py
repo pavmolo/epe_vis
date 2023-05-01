@@ -20,8 +20,8 @@ def remove_row(row_id):
 def generate_row(row_id):
     row_container = st.empty()
     row_columns = row_container.columns((3, 2, 1))
-    row_name = row_columns[0].text_input("Item Name", key=f"txt_{row_id}")
-    row_qty = row_columns[1].number_input("Item Quantity", step=1, key=f"nbr_{row_id}")
+    row_name = row_columns[0].text_input("SKU на оборудовании", key=f"txt_{row_id}")
+    row_qty = row_columns[1].number_input("Ежедневная потребность", step=1, key=f"nbr_{row_id}")
     row_columns[2].button("🗑️", key=f"del_{row_id}", on_click=remove_row, args=[row_id])
     return {"name": row_name, "qty": row_qty}
 
