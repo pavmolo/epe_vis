@@ -24,9 +24,6 @@ def generate_row(row_id):
     row_qty = row_columns[1].number_input("Ежедневная потребность", step=1, key=f"nbr_{row_id}")
     row_cycle = row_columns[2].number_input("Время цикла", step=2, key=f"nbr_{row_id}")
     row_co = row_columns[3].number_input("Время переналадки", step=3, key=f"nbr_{row_id}")
-    
-    row_columns[2].button("🗑️", key=f"del_{row_id}", on_click=remove_row, args=[row_id])
-    row_columns[3].button("🗑️", key=f"del_{row_id}", on_click=remove_row, args=[row_id])
     row_columns[4].button("🗑️", key=f"del_{row_id}", on_click=remove_row, args=[row_id])
     return {"name": row_name, "qty": row_qty}
 
