@@ -63,7 +63,7 @@ if len(rows_collection) > 0:
         stage.append(f'Переналадка с {sku}')
         time.append(f'Производство {sku}')
         time.append(f'Переналадка с {sku}')
-    time_data = pd.concat([stage, time],axis=1)
+    time_data = pd.concat([pd.Series(stage), pd.Series(time)],axis=1)
     
     st.dataframe(data=time_data, use_container_width=True)
     
