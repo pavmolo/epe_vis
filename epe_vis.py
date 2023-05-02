@@ -52,7 +52,7 @@ if len(rows_collection) > 0:
     co_time_in_epe = data['Время переналадки'].sum()
     epe = co_time_in_epe / co_in_a_day
     
-    timeline_data = pd.DataFrame(columns = ['Время на производство'], index = data['SKU'])
+    timeline_data = pd.DataFrame(index = data['SKU'])
     timeline_data['Время на производство'] = ((data['Дневной спрос'] * epe).astype('int')) * data['Время цикла']
     st.dataframe(data=timeline_data, use_container_width=True)
     
