@@ -4,6 +4,7 @@ import uuid
 from fpdf import FPDF
 import base64
 import plotly.express as px
+import plotly.figure_factory as ff
 
 work_minutes = st.number_input("Рабочих минут оборудования в сутки", 0)
 
@@ -71,10 +72,15 @@ if len(rows_collection) > 0:
         a = a + i
         finish_time.append(a)
     time_data = pd.concat([pd.Series(stage), pd.Series(time),pd.Series(start_time), pd.Series(finish_time)],axis=1)
-    time_data.columns = ['Операция', 'Время, мин.', 'Старт время, мин.', 'Оконч. время, мин.']
+    time_data.columns = ['Task', 'Время, мин.', 'Start', 'Finish']
     
     
     st.dataframe(data=time_data, use_container_width=True)
+    
+    
+    fig = ff.create_gantt(time_data)
+    
+    st.plotly_chart(fig, theme="streamlit", use_container_width=True)
     
     st.title(f"Времени остается на переналадки в день: {co_in_a_day} минут")
     st.title(f"Времени переналадки в цикле EPE: {co_time_in_epe} минут")
