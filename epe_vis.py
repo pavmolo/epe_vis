@@ -73,7 +73,7 @@ if len(rows_collection) > 0:
         start_time.append(a)
         a = a + i
         finish_time.append(a)
-    time_data = pd.concat([pd.Series(stage), pd.Series(time),pd.Series(start_time), pd.Series(finish_time)],axis=1)
+    time_data = pd.concat([pd.Series(stage), pd.Series(time),pd.Series(pd.Timedelta(minutes=i) for i in start_time), pd.Series(pd.Timedelta(minutes=i) for i in finish_time)],axis=1)
     time_data.columns = ['Task', 'Время, мин.', 'Start', 'Finish']
     
     
