@@ -77,8 +77,8 @@ if len(rows_collection) > 0:
     
     st.dataframe(data=time_data, use_container_width=True)
     
-    
-    fig = ff.create_gantt(time_data)
+    fig = px.timeline(time_data, x_start="Start", x_end="Finish", y="Task")
+    fig.update_yaxes(autorange="reversed")
     
     st.plotly_chart(fig, theme="streamlit", use_container_width=True)
     
