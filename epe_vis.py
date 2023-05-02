@@ -51,9 +51,9 @@ if len(rows_collection) > 0:
     co_in_a_day = work_minutes - (data['Дневной спрос'] * data['Время цикла']).sum()
     co_time_in_epe = data['Время переналадки'].sum()
     epe = co_time_in_epe / co_in_a_day
-    
-    timeline_data = pd.DataFrame(index = data['SKU'])
-    timeline_data['Время на производство'] = ((data['Дневной спрос'] * epe).astype('int')) * data['Время цикла']
+    t_data = ((data['Дневной спрос'] * epe).astype('int')) * data['Время цикла']
+    timeline_data = pd.DataFrame(data=t_data, index = data['SKU'])
+    #timeline_data['Время на производство'] = 
     st.dataframe(data=timeline_data, use_container_width=True)
     
     st.title(f"Времени остается на переналадки в день: {co_in_a_day} минут")
