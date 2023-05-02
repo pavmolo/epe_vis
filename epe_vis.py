@@ -53,6 +53,7 @@ if len(rows_collection) > 0:
     epe = co_time_in_epe / co_in_a_day
     
     timeline_data = ((data['Дневной спрос'] * epe).astype('int')) * data['Время цикла']
+    timeline_data = pd.DataFrame(timeline_data, columns = ['Время на производство'], index = data['SKU'])
     st.dataframe(data=timeline_data, use_container_width=True)
     
     st.title(f"Времени остается на переналадки в день: {co_in_a_day} минут")
