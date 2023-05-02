@@ -68,7 +68,7 @@ if len(rows_collection) > 0:
         i += i
         accum_time.append(i)
     time_data = pd.concat([pd.Series(stage), pd.Series(time), pd.Series(accum_time)],axis=1)
-    time_data.columns = ['Операция', 'Время, мин.', 'Накопленное время, мин.]
+    time_data.columns = ['Операция', 'Время, мин.', 'Накопленное время, мин.']
     
     st.dataframe(data=time_data, use_container_width=True)
     
