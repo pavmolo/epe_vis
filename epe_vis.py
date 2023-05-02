@@ -65,7 +65,7 @@ if len(rows_collection) > 0:
         time.append(timeline_data[timeline_data['SKU'] == sku]['Время переналадки'].iloc[0])
     accum_time = []
     for i in time:
-        i += i
+        i =+ i
         accum_time.append(i)
     time_data = pd.concat([pd.Series(stage), pd.Series(time), pd.Series(accum_time)],axis=1)
     time_data.columns = ['Операция', 'Время, мин.', 'Накопленное время, мин.']
