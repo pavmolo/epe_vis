@@ -63,13 +63,16 @@ if len(rows_collection) > 0:
         stage.append(f'Переналадка с {sku}')
         time.append(timeline_data[timeline_data['SKU'] == sku]['Время производства'].iloc[0])
         time.append(timeline_data[timeline_data['SKU'] == sku]['Время переналадки'].iloc[0])
-    accum_time = []
+    finish_time = []
+    start_time = []
     a = 0
     for i in time:
+        start_time.append(a)
         a = a + i
-        accum_time.append(a)
-    time_data = pd.concat([pd.Series(stage), pd.Series(time), pd.Series(accum_time)],axis=1)
-    time_data.columns = ['Операция', 'Время, мин.', 'Накопленное время, мин.']
+        finish_time.append(a)
+    time_data = pd.concat([pd.Series(stage), pd.Series(time),pd.Series(start_time), pd.Series(finish_time)],axis=1)
+    time_data.columns = ['Операция', 'Время, мин.', 'Старт время, мин.', 'Оконч. время, мин.']
+    
     
     st.dataframe(data=time_data, use_container_width=True)
     
