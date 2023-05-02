@@ -63,6 +63,7 @@ if len(rows_collection) > 0:
         stage.append(f'Переналадка с {sku}')
         time.append(timeline_data[timeline_data['SKU'] == sku]['Время производства'].iloc[0])
         time.append(timeline_data[timeline_data['SKU'] == sku]['Время переналадки'].iloc[0])
+    timeline_data.columns = ['Операция', 'Время, мин.']
     time_data = pd.concat([pd.Series(stage), pd.Series(time)],axis=1)
     
     st.dataframe(data=time_data, use_container_width=True)
