@@ -61,8 +61,8 @@ if len(rows_collection) > 0:
     for sku in data['SKU']:
         stage.append(f'Производство {sku}')
         stage.append(f'Переналадка с {sku}')
-        time.append(timeline_data[timeline_data['SKU'] == sku]['Время производства'][[0]])
-        time.append(timeline_data[timeline_data['SKU'] == sku]['Время переналадки'][[0]])
+        time.append(timeline_data[timeline_data['SKU'] == sku]['Время производства'].iloc[0])
+        time.append(timeline_data[timeline_data['SKU'] == sku]['Время переналадки'].iloc[0])
     time_data = pd.concat([pd.Series(stage), pd.Series(time)],axis=1)
     
     st.dataframe(data=time_data, use_container_width=True)
