@@ -52,9 +52,8 @@ if len(rows_collection) > 0:
     co_time_in_epe = data['Время переналадки'].sum()
     epe = co_time_in_epe / co_in_a_day
     t_data = ((data['Дневной спрос'] * epe).astype('int')) * data['Время цикла']
-    timeline_data = pd.DataFrame(data=t_data, index = data['SKU'])
-    #timeline_data['Время на производство'] = 
-    st.dataframe(data=t_data, use_container_width=True)
+    timeline_data = df=pd.concat([t_data,data['Время переналадки']],axis=1)
+    st.dataframe(data=timeline_data, use_container_width=True)
     
     st.title(f"Времени остается на переналадки в день: {co_in_a_day} минут")
     st.title(f"Времени переналадки в цикле EPE: {co_time_in_epe} минут")
