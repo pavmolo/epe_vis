@@ -5,6 +5,8 @@ from fpdf import FPDF
 import base64
 import plotly.express as px
 import plotly.figure_factory as ff
+import datetime
+
 
 work_minutes = st.number_input("Рабочих минут оборудования в сутки", 0)
 
@@ -71,7 +73,7 @@ if len(rows_collection) > 0:
         start_time.append(a)
         a = a + i
         finish_time.append(a)
-    time_data = pd.concat([pd.Series(stage), pd.Series(time),pd.Series(start_time), pd.Series(finish_time)],axis=1)
+    time_data = pd.concat([pd.Series(stage), pd.Series(time),pd.Series(datetime.timedelta(minutes=start_time)), pd.Series(datetime.timedelta(minutes=finish_time))],axis=1)
     time_data.columns = ['Task', 'Время, мин.', 'Start', 'Finish']
     
     
