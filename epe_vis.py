@@ -88,7 +88,7 @@ if len(rows_collection) > 0:
         fig.update_layout(xaxis_type='linear', autosize=False)
         fig.layout.update({'title': 'Схема цикла EPE'})
         #fig.update_layout(hovermode="Description")
-        fig.update_layout(xaxis_title="Линия времени в минутах", yaxis_title="Операция")
+        fig.update_layout(xaxis_title="Линия времени в минутах", yaxis_title="Операция", hoverlabel="Description")
         fig.show()
 
         fig.update_yaxes(autorange="reversed")
