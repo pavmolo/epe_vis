@@ -64,7 +64,7 @@ if len(rows_collection) > 0:
     time = []
     for sku in data['SKU']:
         stage.append(f'Производство {sku}')
-        stage.append(f'Переналадка с {sku}')
+        stage.append(f'Переналадка')
         time.append(timeline_data[timeline_data['SKU'] == sku]['Время производства'].iloc[0])
         time.append(timeline_data[timeline_data['SKU'] == sku]['Время переналадки'].iloc[0])
     finish_time = []
@@ -83,7 +83,7 @@ if len(rows_collection) > 0:
     time_data.columns = ['Task', 'Время, мин.', 'Start', 'Finish']
     st.dataframe(data=time_data, use_container_width=True)
     #fig = px.timeline(time_data, x_start="Start", x_end="Finish", y="Task")
-    fig = ff.create_gantt(time_data, bar_width = 0.4, show_colorbar=True)
+    fig = ff.create_gantt(time_data, bar_width = 0.4)
     fig.update_layout(xaxis_type='linear', autosize=False, width=800, height=400)
     fig.show()
     
