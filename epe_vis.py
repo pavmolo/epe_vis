@@ -76,7 +76,7 @@ if len(rows_collection) > 0:
         finish_time.append(a)
     today = pd.Timestamp('today').strftime('%Y-%m-%d')
     now = datetime.datetime.now()
-    time_data = pd.concat([pd.Series(stage), pd.Series(time),now + pd.Series([pd.Timedelta(minutes=i) for i in start_time]), now + pd.Series([pd.Timedelta(minutes=i) for i in finish_time])],axis=1)
+    time_data = pd.concat([pd.Series(stage), pd.Series(time), (now + pd.Series([pd.Timedelta(minutes=i) for i in start_time])).astype(str), (now + pd.Series([pd.Timedelta(minutes=i) for i in finish_time])).astype(str)],axis=1)
     time_data.columns = ['Task', 'Время, мин.', 'Start', 'Finish']
     
     
