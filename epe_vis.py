@@ -47,7 +47,7 @@ with menu[0]:
     st.button("Добавить SKU", on_click=add_row)
     
 if len(rows_collection) > 0:
-    #st.subheader("Данные")
+    st.subheader("Показатели")
     data = pd.DataFrame(rows_collection)
     data.rename(columns={"name": "SKU", "qty": "Дневной спрос", "cycle": "Время цикла", "co": "Время переналадки"}, inplace=True)
     #st.dataframe(data=data, use_container_width=True)
@@ -98,6 +98,7 @@ if len(rows_collection) > 0:
         col3, col4 = st.columns(2)
         col3.metric("EPE в днях", f"{epe} дней")
         col4.metric("EPE в минутах", f"{epe * work_minutes} минут")
+        st.subheader("График EPE")
         st.plotly_chart(fig, theme="streamlit", use_container_width=True)
 
         #st.title(f"Времени остается на переналадки в день: {co_in_a_day} минут")
