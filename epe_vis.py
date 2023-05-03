@@ -99,6 +99,11 @@ if len(rows_collection) > 0:
         st.title(f"Времени переналадки в цикле EPE: {co_time_in_epe} минут")
         st.title(f"EPE = {epe} дней")
         st.title(f"EPE = {epe * work_minutes} минут")
+        
+        col1, col2 = st.columns(2)
+        col1.metric("Времени остается на переналадки в день", f"{co_in_a_day} минут")
+        col2.metric("Времени переналадки в цикле EPE", f"{co_time_in_epe} минут")
+        
     else:
         st.title(f"В цикле не остается времени на переналадку. EPE отрицательна и составляет {epe} дней")
     
