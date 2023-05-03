@@ -74,15 +74,19 @@ if len(rows_collection) > 0:
         start_time.append(a)
         a = a + i
         finish_time.append(a)
-    today = pd.Timestamp('today').strftime('%Y-%m-%d')
-    now = datetime.datetime.now()
-    time_data = pd.concat([pd.Series(stage), pd.Series(time), (now + pd.Series([pd.Timedelta(minutes=i) for i in start_time])), (now + pd.Series([pd.Timedelta(minutes=i) for i in finish_time]))],axis=1)
+    #today = pd.Timestamp('today').strftime('%Y-%m-%d')
+    #now = datetime.datetime.now()
+    #time_data = pd.concat([pd.Series(stage), pd.Series(time), (now + pd.Series([pd.Timedelta(minutes=i) for i in start_time])), (now + pd.Series([pd.Timedelta(minutes=i) for i in finish_time]))],axis=1)
     time_data.columns = ['Task', 'Время, мин.', 'Start', 'Finish']
-    time_data['Start'] = pd.to_datetime(time_data['Start'])
-    time_data['Finish'] = pd.to_datetime(time_data['Finish'])
+    #time_data['Start'] = pd.to_datetime(time_data['Start'])
+    #time_data['Finish'] = pd.to_datetime(time_data['Finish'])
     st.dataframe(data=time_data, use_container_width=True)
+    time_data = pd.concat([pd.Series(stage), pd.Series(time), pd.Series(start_time), pd.Series(finish_time)],axis=1)
+    #fig = px.timeline(time_data, x_start="Start", x_end="Finish", y="Task")
+    fig = ff.create_gantt(time_data, bar_width = 0.4, show_colorbar=True)
+    fig.update_layout(xaxis_type='linear', autosize=False, width=800, height=400)
+    fig.show()
     
-    fig = px.timeline(time_data, x_start="Start", x_end="Finish", y="Task")
     fig.update_yaxes(autorange="reversed")
     
     st.plotly_chart(fig, theme="streamlit", use_container_width=True)
