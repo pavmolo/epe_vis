@@ -78,7 +78,8 @@ if len(rows_collection) > 0:
     now = datetime.datetime.now()
     time_data = pd.concat([pd.Series(stage), pd.Series(time), (now + pd.Series([pd.Timedelta(minutes=i) for i in start_time])), (now + pd.Series([pd.Timedelta(minutes=i) for i in finish_time]))],axis=1)
     time_data.columns = ['Task', 'Время, мин.', 'Start', 'Finish']
-    
+    time_data['Start'] = pd.to_datetime(time_data['Start'])
+    time_data['Finish'] = pd.to_datetime(time_data['Finish'])
     st.dataframe(data=time_data, use_container_width=True)
     
     fig = px.timeline(time_data, x_start="Start", x_end="Finish", y="Task")
