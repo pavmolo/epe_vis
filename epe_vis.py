@@ -6,6 +6,7 @@ import base64
 import plotly.express as px
 import plotly.figure_factory as ff
 import datetime
+from datetime import timedelta
 
 
 work_minutes = st.number_input("Рабочих минут оборудования в сутки", 0)
@@ -74,7 +75,8 @@ if len(rows_collection) > 0:
         a = a + i
         finish_time.append(a)
     today = pd.Timestamp('today').strftime('%Y-%m-%d')
-    time_data = pd.concat([pd.Series(stage), pd.Series(time),pd.Series([pd.Timedelta(minutes=i) for i in start_time]), pd.Series([pd.Timedelta(minutes=i) for i in finish_time])],axis=1)
+    now = datetime.datetime.now()
+    time_data = pd.concat([pd.Series(stage), pd.Series(time),now + pd.Series([pd.Timedelta(minutes=i) for i in start_time]), now + pd.Series([pd.Timedelta(minutes=i) for i in finish_time])],axis=1)
     time_data.columns = ['Task', 'Время, мин.', 'Start', 'Finish']
     
     
