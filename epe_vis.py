@@ -83,12 +83,11 @@ if len(rows_collection) > 0:
         time_data = pd.concat([pd.Series(stage), pd.Series(time), pd.Series(start_time), pd.Series(finish_time)],axis=1)
         time_data.columns = ['Task', 'Время, мин.', 'Start', 'Finish']
         #st.dataframe(data=time_data, use_container_width=True)
-        #fig = px.timeline(time_data, x_start="Start", x_end="Finish", y="Task")
+        #fig = px.timeline(time_data, x_start="Start", x_end="Finish", y="Task", Description = 'Время, мин.')
         fig = ff.create_gantt(time_data, bar_width = 0.4, index_col='Task')
         fig.update_layout(xaxis_type='linear', autosize=False)
         fig.layout.update({'title': 'Схема цикла EPE'})
         fig.update_layout(xaxis_title="Линия времени в минутах", yaxis_title="Операция")
-        fig.data[2].hovertemplate
         fig.show()
 
         fig.update_yaxes(autorange="reversed")
