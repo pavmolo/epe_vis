@@ -44,7 +44,7 @@ for row in st.session_state["rows"]:
 menu = st.columns(2)
 
 with menu[0]:
-    st.button("Add Item", on_click=add_row)
+    st.button("Добавить SKU", on_click=add_row)
     
 if len(rows_collection) > 0:
     st.subheader("Данные")
