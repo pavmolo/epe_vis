@@ -55,46 +55,48 @@ if len(rows_collection) > 0:
     co_in_a_day = work_minutes - (data['Дневной спрос'] * data['Время цикла']).sum()
     co_time_in_epe = data['Время переналадки'].sum()
     epe = co_time_in_epe / co_in_a_day
+    
     t_data = ((data['Дневной спрос'] * epe).astype('int')) * data['Время цикла']
     timeline_data = pd.concat([data['SKU'], t_data, data['Время переналадки']],axis=1)
     timeline_data.columns = ['SKU', 'Время производства', 'Время переналадки']
     #st.dataframe(data=timeline_data, use_container_width=True)
-    
-    stage = []
-    time = []
-    for sku in data['SKU']:
-        stage.append(f'Производство {sku}')
-        stage.append(f'Переналадка')
-        time.append(timeline_data[timeline_data['SKU'] == sku]['Время производства'].iloc[0])
-        time.append(timeline_data[timeline_data['SKU'] == sku]['Время переналадки'].iloc[0])
-    finish_time = []
-    start_time = []
-    a = 0
-    for i in time:
-        start_time.append(a)
-        a = a + i
-        finish_time.append(a)
-    #today = pd.Timestamp('today').strftime('%Y-%m-%d')
-    #now = datetime.datetime.now()
-    #time_data = pd.concat([pd.Series(stage), pd.Series(time), (now + pd.Series([pd.Timedelta(minutes=i) for i in start_time])), (now + pd.Series([pd.Timedelta(minutes=i) for i in finish_time]))],axis=1)
-    #time_data['Start'] = pd.to_datetime(time_data['Start'])
-    #time_data['Finish'] = pd.to_datetime(time_data['Finish'])
-    time_data = pd.concat([pd.Series(stage), pd.Series(time), pd.Series(start_time), pd.Series(finish_time)],axis=1)
-    time_data.columns = ['Task', 'Время, мин.', 'Start', 'Finish']
-    #st.dataframe(data=time_data, use_container_width=True)
-    #fig = px.timeline(time_data, x_start="Start", x_end="Finish", y="Task")
-    fig = ff.create_gantt(time_data, bar_width = 0.4, index_col='Task')
-    fig.update_layout(xaxis_type='linear', autosize=False, width=800, height=400)
-    fig.show()
-    
-    fig.update_yaxes(autorange="reversed")
-    
-    st.plotly_chart(fig, theme="streamlit", use_container_width=True)
-    
-    st.title(f"Времени остается на переналадки в день: {co_in_a_day} минут")
-    st.title(f"Времени переналадки в цикле EPE: {co_time_in_epe} минут")
-    st.title(f"EPE = {epe} дней")
-    
+    if epe > 0:
+        stage = []
+        time = []
+        for sku in data['SKU']:
+            stage.append(f'Производство {sku}')
+            stage.append(f'Переналадка')
+            time.append(timeline_data[timeline_data['SKU'] == sku]['Время производства'].iloc[0])
+            time.append(timeline_data[timeline_data['SKU'] == sku]['Время переналадки'].iloc[0])
+        finish_time = []
+        start_time = []
+        a = 0
+        for i in time:
+            start_time.append(a)
+            a = a + i
+            finish_time.append(a)
+        #today = pd.Timestamp('today').strftime('%Y-%m-%d')
+        #now = datetime.datetime.now()
+        #time_data = pd.concat([pd.Series(stage), pd.Series(time), (now + pd.Series([pd.Timedelta(minutes=i) for i in start_time])), (now + pd.Series([pd.Timedelta(minutes=i) for i in finish_time]))],axis=1)
+        #time_data['Start'] = pd.to_datetime(time_data['Start'])
+        #time_data['Finish'] = pd.to_datetime(time_data['Finish'])
+        time_data = pd.concat([pd.Series(stage), pd.Series(time), pd.Series(start_time), pd.Series(finish_time)],axis=1)
+        time_data.columns = ['Task', 'Время, мин.', 'Start', 'Finish']
+        #st.dataframe(data=time_data, use_container_width=True)
+        #fig = px.timeline(time_data, x_start="Start", x_end="Finish", y="Task")
+        fig = ff.create_gantt(time_data, bar_width = 0.4, index_col='Task')
+        fig.update_layout(xaxis_type='linear', autosize=False, width=800, height=400)
+        fig.show()
+
+        fig.update_yaxes(autorange="reversed")
+
+        st.plotly_chart(fig, theme="streamlit", use_container_width=True)
+
+        st.title(f"Времени остается на переналадки в день: {co_in_a_day} минут")
+        st.title(f"Времени переналадки в цикле EPE: {co_time_in_epe} минут")
+        st.title(f"EPE = {epe} дней")
+    else:
+        st.title(f"В цикле не остается времени на переналадку. EPE отрицательна: {epe} минут")
     
 
 
