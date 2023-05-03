@@ -79,9 +79,6 @@ if len(rows_collection) > 0:
     time_data = pd.concat([pd.Series(stage), pd.Series(time), (now + pd.Series([pd.Timedelta(minutes=i) for i in start_time])), (now + pd.Series([pd.Timedelta(minutes=i) for i in finish_time]))],axis=1)
     time_data.columns = ['Task', 'Время, мин.', 'Start', 'Finish']
     
-    
-    today + datetime.timedelta(days=1)
-    
     st.dataframe(data=time_data, use_container_width=True)
     
     fig = px.timeline(time_data, x_start="Start", x_end="Finish", y="Task")
