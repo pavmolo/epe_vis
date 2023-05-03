@@ -47,7 +47,7 @@ with menu[0]:
     st.button("Добавить SKU", on_click=add_row)
     
 if len(rows_collection) > 0:
-    st.subheader("Данные")
+    #st.subheader("Данные")
     data = pd.DataFrame(rows_collection)
     data.rename(columns={"name": "SKU", "qty": "Дневной спрос", "cycle": "Время цикла", "co": "Время переналадки"}, inplace=True)
     #st.dataframe(data=data, use_container_width=True)
