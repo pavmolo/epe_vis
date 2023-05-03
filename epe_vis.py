@@ -86,6 +86,7 @@ if len(rows_collection) > 0:
         #fig = px.timeline(time_data, x_start="Start", x_end="Finish", y="Task")
         fig = ff.create_gantt(time_data, bar_width = 0.4, index_col='Task')
         fig.update_layout(xaxis_type='linear', autosize=False, width=800, height=400)
+        fig.layout.update({'title': 'Схема цикла EPE'})
         fig.show()
 
         fig.update_yaxes(autorange="reversed")
