@@ -80,11 +80,10 @@ if len(rows_collection) > 0:
     #time_data['Start'] = pd.to_datetime(time_data['Start'])
     #time_data['Finish'] = pd.to_datetime(time_data['Finish'])
     time_data = pd.concat([pd.Series(stage), pd.Series(time), pd.Series(start_time), pd.Series(finish_time)],axis=1)
-    time_data['op_type'] = time_data.index
-    time_data.columns = ['Task', 'Время, мин.', 'Start', 'Finish', 'Task']
+    time_data.columns = ['Task', 'Время, мин.', 'Start', 'Finish']
     st.dataframe(data=time_data, use_container_width=True)
     #fig = px.timeline(time_data, x_start="Start", x_end="Finish", y="Task")
-    fig = ff.create_gantt(time_data, bar_width = 0.4, colors = 'op_type')
+    fig = ff.create_gantt(time_data, bar_width = 0.4, colors = 'Task')
     fig.update_layout(xaxis_type='linear', autosize=False, width=800, height=400)
     fig.show()
     
