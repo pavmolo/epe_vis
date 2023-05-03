@@ -87,6 +87,7 @@ if len(rows_collection) > 0:
         fig = ff.create_gantt(time_data, bar_width = 0.4, index_col='Task')
         fig.update_layout(xaxis_type='linear', autosize=False, width=800, height=400)
         fig.layout.update({'title': 'Схема цикла EPE'})
+        fig.update_layout(xaxis_title="Линия времени в минутах", yaxis_title="Операция")
         fig.show()
 
         fig.update_yaxes(autorange="reversed")
