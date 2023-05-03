@@ -51,7 +51,7 @@ if len(rows_collection) > 0:
     data = pd.DataFrame(rows_collection)
     data.rename(columns={"name": "SKU", "qty": "Дневной спрос", "cycle": "Время цикла", "co": "Время переналадки"}, inplace=True)
     st.dataframe(data=data, use_container_width=True)
-    st.bar_chart(data=data, x="SKU", y="Дневной спрос")
+    #st.bar_chart(data=data, x="SKU", y="Дневной спрос")
     co_in_a_day = work_minutes - (data['Дневной спрос'] * data['Время цикла']).sum()
     co_time_in_epe = data['Время переналадки'].sum()
     epe = co_time_in_epe / co_in_a_day
