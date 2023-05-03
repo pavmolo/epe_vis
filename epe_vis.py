@@ -95,6 +95,7 @@ if len(rows_collection) > 0:
         st.title(f"Времени остается на переналадки в день: {co_in_a_day} минут")
         st.title(f"Времени переналадки в цикле EPE: {co_time_in_epe} минут")
         st.title(f"EPE = {epe} дней")
+        st.title(f"EPE = {epe * work_minutes} минут")
     else:
         st.title(f"В цикле не остается времени на переналадку. EPE отрицательна и составляет {epe} дней")
     
