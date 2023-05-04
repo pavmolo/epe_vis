@@ -35,7 +35,6 @@ def generate_row(row_id):
     row_columns[4].button("🗑️", key=f"del_{row_id}", on_click=remove_row, args=[row_id])
     return {"name": row_name, "qty": row_qty, "cycle": row_cycle, "co": row_co}
 
-st.title("Данные по SKU на оборудовании")
 
 for row in st.session_state["rows"]:
     row_data = generate_row(row)
@@ -43,6 +42,10 @@ for row in st.session_state["rows"]:
 
 with menu[0]:
     st.button("Добавить SKU", on_click=add_row)
+
+st.title("Данные по SKU на оборудовании")
+
+
     
 if len(rows_collection) == 0:
     uploaded_files = st.file_uploader("Choose a CSV file", accept_multiple_files=True)
