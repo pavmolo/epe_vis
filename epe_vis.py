@@ -42,7 +42,7 @@ with menu[0]:
     
 if len(rows_collection) == 0:
     uploaded_file = st.file_uploader("Выберите XLSX файл", accept_multiple_files=False)
-    while uploaded_file:
+    if uploaded_file:
         data = pd.read_excel(uploaded_file)
         st.subheader("Показатели")
         co_in_a_day = work_minutes - (data['Дневной спрос'] * data['Время цикла']).sum()
