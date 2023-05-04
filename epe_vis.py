@@ -8,9 +8,11 @@ import plotly.figure_factory as ff
 import datetime
 from datetime import timedelta
 
-
-work_minutes = st.number_input("Рабочих минут оборудования в сутки", 0)
-
+input_row = = st.columns(2)
+with input_row[0]:
+    work_minutes = st.number_input("Рабочих минут оборудования в сутки", 0)
+with input_row[1]:
+    uploaded_file = st.file_uploader("Выберите XLSX файл", accept_multiple_files=False)
 if "rows" not in st.session_state:
     st.session_state["rows"] = []
 
@@ -41,7 +43,6 @@ with menu[0]:
     st.button("Добавить SKU", on_click=add_row)
     
 if len(rows_collection) == 0:
-    uploaded_file = st.file_uploader("Выберите XLSX файл", accept_multiple_files=False)
     if uploaded_file:
         data = pd.read_excel(uploaded_file)
         st.subheader("Показатели")
