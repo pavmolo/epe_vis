@@ -37,10 +37,10 @@ def generate_row(row_id):
     row_columns[4].button("🗑️", key=f"del_{row_id}", on_click=remove_row, args=[row_id])
     return {"name": row_name, "qty": row_qty, "cycle": row_cycle, "co": row_co}
 
-
-menu = st.columns(2)
-with menu[0]:
-    st.button("Добавить SKU", on_click=add_row)
+if uploaded_file:
+    menu = st.columns(2)
+    with menu[0]:
+        st.button("Добавить SKU", on_click=add_row)
     
 if len(rows_collection) == 0:
     if uploaded_file:
