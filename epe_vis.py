@@ -46,7 +46,7 @@ menu = st.columns(2)
 with menu[0]:
     st.button("Добавить SKU", on_click=add_row)
     
-if len(rows_collection) == 0
+if len(rows_collection) == 0:
     uploaded_files = st.file_uploader("Choose a CSV file", accept_multiple_files=True)
 
     for uploaded_file in uploaded_files:
