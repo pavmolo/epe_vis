@@ -36,7 +36,7 @@ def generate_row(row_id):
     return {"name": row_name, "qty": row_qty, "cycle": row_cycle, "co": row_co}
 
 
-
+menu = st.columns(2)
 with menu[0]:
     st.button("Добавить SKU", on_click=add_row)
     
@@ -99,7 +99,7 @@ if len(rows_collection) > 0:
         row_data = generate_row(row)
         rows_collection.append(row_data)
 
-    menu = st.columns(2)
+    
     st.subheader("Показатели")
     data = pd.DataFrame(rows_collection)
     data.rename(columns={"name": "SKU", "qty": "Дневной спрос", "cycle": "Время цикла", "co": "Время переналадки"}, inplace=True)
