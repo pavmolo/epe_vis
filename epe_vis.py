@@ -8,7 +8,7 @@ import plotly.figure_factory as ff
 import datetime
 from datetime import timedelta
 
-input_row = = st.columns(2)
+input_row = st.columns(2)
 with input_row[0]:
     work_minutes = st.number_input("Рабочих минут оборудования в сутки", 0)
 with input_row[1]:
