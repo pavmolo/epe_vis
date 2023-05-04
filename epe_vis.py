@@ -23,6 +23,10 @@ def add_row():
 
 def remove_row(row_id):
     st.session_state["rows"].remove(str(row_id))
+    for row in st.session_state["rows"]:
+        row_data = generate_row(row)
+        rows_collection.append(row_data)
+
 
 
 def generate_row(row_id):
@@ -36,9 +40,6 @@ def generate_row(row_id):
     return {"name": row_name, "qty": row_qty, "cycle": row_cycle, "co": row_co}
 
 
-for row in st.session_state["rows"]:
-    row_data = generate_row(row)
-    rows_collection.append(row_data)
 
 with menu[0]:
     st.button("Добавить SKU", on_click=add_row)
