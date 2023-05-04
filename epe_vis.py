@@ -41,6 +41,7 @@ with menu[0]:
     st.button("Добавить SKU", on_click=add_row)
     
 if len(rows_collection) == 0:
+    uploaded_file = st.empty()
     uploaded_file = st.file_uploader("Выберите XLSX файл", accept_multiple_files=False)
     data = pd.read_excel(uploaded_file)
     st.subheader("Показатели")
