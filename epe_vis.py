@@ -46,7 +46,7 @@ if uploaded_file:
         time_data.columns = ['Task', 'Description', 'Start', 'Finish']
         timeline_data['Размер партии, шт.'] = timeline_data['Время производства'] / data['Время цикла']
         timeline_data = timeline_data[['SKU', 'Размер партии, шт.', 'Время производства', 'Время переналадки']]
-        st.dataframe(data=timeline_data, use_container_width=True)
+        #st.dataframe(data=timeline_data, use_container_width=True)
         #fig = px.timeline(time_data, x_start="Start", x_end="Finish", y="Task", Description = 'Время, мин.')
         fig = ff.create_gantt(time_data, bar_width = 0.4, index_col='Task')
         fig.update_layout(xaxis_type='linear', autosize=False)
