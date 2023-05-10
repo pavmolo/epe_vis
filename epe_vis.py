@@ -15,7 +15,7 @@ with input_row[1]:
     uploaded_file = st.file_uploader("Выберите XLSX файл", accept_multiple_files=False)
 if "rows" not in st.session_state:
     st.session_state["rows"] = []
-
+st.button("Добавить SKU", on_click=add_row)
 rows_collection = []
 
 def add_row():
@@ -37,7 +37,7 @@ def generate_row(row_id):
     row_columns[4].button("🗑️", key=f"del_{row_id}", on_click=remove_row, args=[row_id])
     return {"name": row_name, "qty": row_qty, "cycle": row_cycle, "co": row_co}
 
-st.button("Добавить SKU", on_click=add_row)
+
     
 if len(rows_collection) == 0:
     if uploaded_file:
