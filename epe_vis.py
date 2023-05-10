@@ -44,6 +44,7 @@ if uploaded_file:
         #time_data['Finish'] = pd.to_datetime(time_data['Finish'])
         time_data = pd.concat([pd.Series(stage), pd.Series(time), pd.Series(start_time), pd.Series(finish_time)],axis=1)
         time_data.columns = ['Task', 'Description', 'Start', 'Finish']
+        timeline_data['Количество штук в партии'] = timeline_data['Время производства'] / data['Время цикла']
         st.dataframe(data=timeline_data, use_container_width=True)
         #fig = px.timeline(time_data, x_start="Start", x_end="Finish", y="Task", Description = 'Время, мин.')
         fig = ff.create_gantt(time_data, bar_width = 0.4, index_col='Task')
