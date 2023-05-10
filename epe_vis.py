@@ -103,6 +103,7 @@ with menu[0]:
     st.subheader("Показатели")
     data = pd.DataFrame(rows_collection)
     data.rename(columns={"name": "SKU", "qty": "Дневной спрос", "cycle": "Время цикла", "co": "Время переналадки"}, inplace=True)
+    co_in_a_day = 0
     co_in_a_day = work_minutes - (data['Дневной спрос'] * data['Время цикла']).sum()
     co_time_in_epe = data['Время переналадки'].sum()
     epe = co_time_in_epe / co_in_a_day
