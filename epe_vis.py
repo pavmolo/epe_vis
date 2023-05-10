@@ -38,9 +38,7 @@ def generate_row(row_id):
     return {"name": row_name, "qty": row_qty, "cycle": row_cycle, "co": row_co}
 
 
-menu = st.columns(2)
-with menu[0]:
-    st.button("Добавить SKU", on_click=add_row)
+
     
 if len(rows_collection) == 0:
     if uploaded_file:
@@ -92,7 +90,9 @@ if len(rows_collection) == 0:
         st.subheader("График EPE")
         st.plotly_chart(fig, theme="streamlit", use_container_width=True)
 
-
+menu = st.columns(2)
+with menu[0]:
+    st.button("Добавить SKU", on_click=add_row)
 st.title("Данные по SKU на оборудовании")
 
 for row in st.session_state["rows"]:
