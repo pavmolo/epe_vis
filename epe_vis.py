@@ -19,7 +19,7 @@ if uploaded_file:
     co_in_a_day = work_minutes - (data['Дневной спрос'] * data['Время цикла']).sum()
     co_time_in_epe = data['Время переналадки'].sum()
     epe = co_time_in_epe / co_in_a_day
-    if epe < 0:
+    if epe > 0:
         t_data = ((data['Дневной спрос'] * epe).astype('int')) * data['Время цикла']
         timeline_data = pd.concat([data['SKU'], t_data, data['Время переналадки']],axis=1)
         timeline_data.columns = ['SKU', 'Время производства', 'Время переналадки']
