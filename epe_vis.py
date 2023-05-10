@@ -96,12 +96,17 @@ if len(rows_collection) == 0:
         st.subheader("График EPE")
         st.plotly_chart(fig, theme="streamlit", use_container_width=True)
 
-if len(rows_collection) > 0:
-    st.title("Данные по SKU на оборудовании")
 
-    for row in st.session_state["rows"]:
-        row_data = generate_row(row)
-        rows_collection.append(row_data)
+st.title("Данные по SKU на оборудовании")
+
+for row in st.session_state["rows"]:
+     row_data = generate_row(row)
+     rows_collection.append(row_data)
+
+menu = st.columns(2)
+
+with menu[0]:
+    st.button("Добавить SKU", on_click=add_row)
 
     
     st.subheader("Показатели")
