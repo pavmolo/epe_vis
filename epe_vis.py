@@ -44,7 +44,7 @@ for row in st.session_state["rows"]:
     rows_collection.append(row_data)
 menu = st.columns(2)
 with menu[0]:
-     st.button("Добавить SKU", on_click=add_row)
+    st.button("Добавить SKU", on_click=add_row)
     
 if len(rows_collection) == 0:
     if uploaded_file:
